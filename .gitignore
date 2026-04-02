@@ -1,0 +1,35 @@
+# Unity generated folders
+Library/
+Temp/
+Obj/
+Logs/
+MemoryCaptures/
+Build/
+Builds/
+
+# User-specific editor state
+UserSettings/
+.vs/
+.idea/
+.vscode/
+
+# Regenerable solution/project files
+*.csproj
+*.sln
+*.slnx
+*.user
+*.userprefs
+*.unityproj
+*.booproj
+*.pidb
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Do not ignore Assets/, Packages/, ProjectSettings/ or *.meta files.
