@@ -126,3 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Note
   highlightMaterial: {fileID: 2100000, guid: f2bd01b4ec6bf9943a7f54c68e90e181, type: 2}
+  areYouSureText: {fileID: 0}
+  collectActionReference: {fileID: -5438159209621138392, guid: 68f0ed8c5726b9a46a8400c856ddb36a, type: 3}

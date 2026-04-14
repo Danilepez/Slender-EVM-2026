@@ -1,46 +1,74 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Note : MonoBehaviour
 {
-    private MeshRenderer[] meshRenderer;
-    private Material[] originalMaterial;
     public Material highlightMaterial;
-    public float lookRange = 5f;
+    //public TMP_Text areYouSureText;
+    public InputActionReference collectActionReference;
+
+    private MeshRenderer[] meshRenderers;
+    private Material[] originalMaterials;
+    private float lookRange = 3f;
 
     private PlayerLook player;
     private Camera playerCamPosition;
     private bool isLookedAt = false;
+
     void Start()
     {
-        meshRenderer = GetComponentsInChildren<MeshRenderer>();
-        originalMaterial = new Material[meshRenderer.Length];
-        for (int i = 0; i < meshRenderer.Length; i++)
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        originalMaterials = new Material[meshRenderers.Length];
+        for (int i = 0; i < meshRenderers.Length; i++)
         {
-            originalMaterial[i] = meshRenderer[i].material;
+            originalMaterials[i] = meshRenderers[i].material;
         }
         player = FindAnyObjectByType<PlayerLook>();
         playerCamPosition = player.GetComponentInChildren<Camera>();
+
     }
 
     void Update()
     {
+        CheckIfLookingAtNote();
+        CollectNote();
+    }
+
+    void CheckIfLookingAtNote()
+    {
         Ray ray = new Ray(playerCamPosition.transform.position, playerCamPosition.transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, lookRange))
+
+        if (Physics.Raycast(ray, out RaycastHit hit, lookRange) && hit.collider.gameObject == this.gameObject)
         {
-            if (hit.collider.gameObject == this.gameObject)
+            if (!isLookedAt)
             {
                 isLookedAt = true;
-                Debug.Log("Looking at note" + isLookedAt);
-                IsLookedAt(isLookedAt);
+                //areYouSureText.gameObject.SetActive(true);
+                IsLookedAt(true);
             }
-            return;
-        } 
+        }
         else
         {
-            isLookedAt = false;
-            Debug.Log("Looking at note else" + isLookedAt);
-            IsLookedAt(isLookedAt);
+            if (isLookedAt)
+            {
+                isLookedAt = false;
+                //areYouSureText.gameObject.SetActive(false);
+                IsLookedAt(false);
+            }
+        }
+    }
+
+    public void CollectNote()
+    {
+        if (isLookedAt && collectActionReference.action.WasPressedThisFrame())
+        {
+            //if (areYouSureText)
+            //{
+            //    areYouSureText.gameObject.SetActive(false);
+            //}
+            GameManager.Instance.AddNote();
+            Destroy(gameObject);
         }
     }
 
@@ -49,33 +77,18 @@ public class Note : MonoBehaviour
         isLookedAt = isLookAt;
         if (isLookedAt)
         {
-            foreach (MeshRenderer mr in meshRenderer)
+            foreach (MeshRenderer mr in meshRenderers)
             {
                 mr.material = highlightMaterial;
-                Debug.Log("Highlighting note");
             }
-            Debug.Log("Highlighting note f" + isLookedAt);
-
-            /*for (int i = 0; i < meshRenderer.Length; i++)
-            {
-                meshRenderer[i].material = highlightMaterial;
-            }*/
         }
         else
         {
-            for (int i = 0; i < meshRenderer.Length; i++)
+            for (int i = 0; i < meshRenderers.Length; i++)
             {
-                meshRenderer[i].material = originalMaterial[i];
+                meshRenderers[i].material = originalMaterials[i];
+                //areYouSureText.gameObject.SetActive(false);
             }
-        }
-    }
-
-    public void OnCollect(InputValue data)
-    {
-        if (data.isPressed)
-        {
-            Debug.Log("OnCollect");
-            Destroy(this.gameObject);
         }
     }
 }

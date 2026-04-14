@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float movementSpeed = 5f;
+    public float movementSpeed = 0.5f;
     public InputActionReference sprintAction;
     public AudioClip walkClip;
     public AudioClip runClip;
