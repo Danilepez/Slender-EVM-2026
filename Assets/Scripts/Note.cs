@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class Note : MonoBehaviour
 {
     public Material highlightMaterial;
-    //public TMP_Text areYouSureText;
+    public TMP_Text areYouSureText;
     public InputActionReference collectActionReference;
 
     private MeshRenderer[] meshRenderers;
@@ -44,7 +44,7 @@ public class Note : MonoBehaviour
             if (!isLookedAt)
             {
                 isLookedAt = true;
-                //areYouSureText.gameObject.SetActive(true);
+                areYouSureText.gameObject.SetActive(true);
                 IsLookedAt(true);
             }
         }
@@ -53,7 +53,7 @@ public class Note : MonoBehaviour
             if (isLookedAt)
             {
                 isLookedAt = false;
-                //areYouSureText.gameObject.SetActive(false);
+                areYouSureText.gameObject.SetActive(false);
                 IsLookedAt(false);
             }
         }
@@ -63,10 +63,10 @@ public class Note : MonoBehaviour
     {
         if (isLookedAt && collectActionReference.action.WasPressedThisFrame())
         {
-            //if (areYouSureText)
-            //{
-            //    areYouSureText.gameObject.SetActive(false);
-            //}
+            if (areYouSureText)
+            {
+                areYouSureText.gameObject.SetActive(false);
+            }
             GameManager.Instance.AddNote();
             Destroy(gameObject);
         }
@@ -87,7 +87,7 @@ public class Note : MonoBehaviour
             for (int i = 0; i < meshRenderers.Length; i++)
             {
                 meshRenderers[i].material = originalMaterials[i];
-                //areYouSureText.gameObject.SetActive(false);
+                areYouSureText.gameObject.SetActive(false);
             }
         }
     }

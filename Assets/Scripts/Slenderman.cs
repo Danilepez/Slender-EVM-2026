@@ -14,6 +14,7 @@ public class Slenderman : MonoBehaviour
     private float baseSpeed = 0.5f;
     private float catchDistance = 2f;
     private bool isGameOver = false;
+    private const float gameOverDelaySeconds = 3f;
 
 
     void Start()
@@ -71,7 +72,7 @@ public class Slenderman : MonoBehaviour
         Vector3 playerLookAtSlender = transform.position + (Vector3.up * 2f);
         playerLook.playerCamera.LookAt(playerLookAtSlender);
 
-        LoadGameOverScene();
+        Invoke(nameof(LoadGameOverScene), gameOverDelaySeconds);
 
     }
 

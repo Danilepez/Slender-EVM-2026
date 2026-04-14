@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4187726112113078321}
   - component: {fileID: 3896646226700502712}
   - component: {fileID: 6432747547688712174}
-  - component: {fileID: -3432533463253860587}
+  - component: {fileID: 617931480653816383}
+  - component: {fileID: 8401506200146358753}
   m_Layer: 0
   m_Name: Note
   m_TagString: Untagged
@@ -113,7 +114,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3432533463253860587
+--- !u!114 &617931480653816383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,3 +129,23 @@ MonoBehaviour:
   highlightMaterial: {fileID: 2100000, guid: f2bd01b4ec6bf9943a7f54c68e90e181, type: 2}
   areYouSureText: {fileID: 0}
   collectActionReference: {fileID: -5438159209621138392, guid: 68f0ed8c5726b9a46a8400c856ddb36a, type: 3}
+--- !u!114 &8401506200146358753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504945342703641503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifier
+  m_SerializedVersion: 0
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
